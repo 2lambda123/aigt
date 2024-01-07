@@ -78,11 +78,13 @@ def registerSampleData():
         # It can be created by Screen Capture module, "Capture all views" option enabled, "Number of images" set to "Single".
         thumbnailFileName=os.path.join(iconsPath, "BLUELungUltrasound1.png"),
         # Download URL and target file name
-        uris="https://github.com/Slicer/SlicerTestingData/releases/download/SHA256/998cb522173839c78657f4bc0ea907cea09fd04e44601f17c82ea27927937b95",
+        uris=
+        "https://github.com/Slicer/SlicerTestingData/releases/download/SHA256/998cb522173839c78657f4bc0ea907cea09fd04e44601f17c82ea27927937b95",
         fileNames="BLUELungUltrasound1.nrrd",
         # Checksum to ensure file integrity. Can be computed by this command:
         #  import hashlib; print(hashlib.sha256(open(filename, "rb").read()).hexdigest())
-        checksums="SHA256:998cb522173839c78657f4bc0ea907cea09fd04e44601f17c82ea27927937b95",
+        checksums=
+        "SHA256:998cb522173839c78657f4bc0ea907cea09fd04e44601f17c82ea27927937b95",
         # This node name will be used when the data set is loaded
         nodeNames="BLUELungUltrasound1",
     )
@@ -94,9 +96,11 @@ def registerSampleData():
         sampleName="BLUELungUltrasound2",
         thumbnailFileName=os.path.join(iconsPath, "BLUELungUltrasound2.png"),
         # Download URL and target file name
-        uris="https://github.com/Slicer/SlicerTestingData/releases/download/SHA256/1a64f3f422eb3d1c9b093d1a18da354b13bcf307907c66317e2463ee530b7a97",
+        uris=
+        "https://github.com/Slicer/SlicerTestingData/releases/download/SHA256/1a64f3f422eb3d1c9b093d1a18da354b13bcf307907c66317e2463ee530b7a97",
         fileNames="BLUELungUltrasound2.nrrd",
-        checksums="SHA256:1a64f3f422eb3d1c9b093d1a18da354b13bcf307907c66317e2463ee530b7a97",
+        checksums=
+        "SHA256:1a64f3f422eb3d1c9b093d1a18da354b13bcf307907c66317e2463ee530b7a97",
         # This node name will be used when the data set is loaded
         nodeNames="BLUELungUltrasound2",
     )
@@ -107,7 +111,8 @@ def registerSampleData():
 #
 
 
-class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
+class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget,
+                               VTKObservationMixin):
     """Uses ScriptedLoadableModuleWidget base class, available at:
     https://github.com/Slicer/Slicer/blob/main/Base/Python/slicer/ScriptedLoadableModule.py
 
@@ -136,7 +141,8 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
 
         # Load widget from .ui file (created by Qt Designer).
         # Additional widgets can be instantiated manually and added to self.layout.
-        uiWidget = slicer.util.loadUI(self.resourcePath("UI/BLUELungUltrasound.ui"))
+        uiWidget = slicer.util.loadUI(
+            self.resourcePath("UI/BLUELungUltrasound.ui"))
         self.layout.addWidget(uiWidget)
         self.ui = slicer.util.childWidgetVariables(uiWidget)
 
@@ -152,40 +158,34 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
         # Connections
 
         # These connections ensure that we update parameter node when scene is closed
-        self.addObserver(
-            slicer.mrmlScene, slicer.mrmlScene.StartCloseEvent, self.onSceneStartClose
-        )
-        self.addObserver(
-            slicer.mrmlScene, slicer.mrmlScene.EndCloseEvent, self.onSceneEndClose
-        )
+        self.addObserver(slicer.mrmlScene, slicer.mrmlScene.StartCloseEvent,
+                         self.onSceneStartClose)
+        self.addObserver(slicer.mrmlScene, slicer.mrmlScene.EndCloseEvent,
+                         self.onSceneEndClose)
 
         # These connections ensure that whenever user changes some settings on the GUI, that is saved in the MRML scene
         # (in the selected parameter node).
         self.ui.plusConfigFileSelector.connect(
-            "currentPathChanged(const QString)", self.onPlusConfigFileChanged
-        )
+            "currentPathChanged(const QString)", self.onPlusConfigFileChanged)
         self.ui.plusServerExeSelector.connect(
-            "currentPathChanged(const QString)", self.onPlusServerExePathChanged
-        )
+            "currentPathChanged(const QString)",
+            self.onPlusServerExePathChanged)
 
         # Buttons
-        self.ui.startPlusButton.connect("toggled(bool)", self.onStartPlusClicked)
-        self.ui.setViewButton.connect("clicked(bool)", self.onSetViewButtonClicked)
+        self.ui.startPlusButton.connect("toggled(bool)",
+                                        self.onStartPlusClicked)
+        self.ui.setViewButton.connect("clicked(bool)",
+                                      self.onSetViewButtonClicked)
         self.ui.startInferenceButton.connect(
-            "toggled(bool)", self.onStartInferenceButtonClicked
-        )
-        self.ui.setCustomUiButton.connect(
-            "toggled(bool)", self.onSetCustomUiButtonClicked
-        )
-        self.ui.placeMarkupLineButton.connect(
-            "clicked(bool)", self.onPlaceMarkupLineClicked
-        )
-        self.ui.generateMModeButton.connect(
-            "clicked(bool)", self.onGenerateMModeButtonClicked
-        )
+            "toggled(bool)", self.onStartInferenceButtonClicked)
+        self.ui.setCustomUiButton.connect("toggled(bool)",
+                                          self.onSetCustomUiButtonClicked)
+        self.ui.placeMarkupLineButton.connect("clicked(bool)",
+                                              self.onPlaceMarkupLineClicked)
+        self.ui.generateMModeButton.connect("clicked(bool)",
+                                            self.onGenerateMModeButtonClicked)
         self.ui.toggleTestObserverButton.connect(
-            "toggled(bool)", self.onToggleTestObserverButtonClicked
-        )
+            "toggled(bool)", self.onToggleTestObserverButtonClicked)
 
         # Make sure parameter node is initialized (needed for module reload)
         self.initializeParameterNode()
@@ -261,9 +261,9 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
         # Changes of parameter node are observed so that whenever parameters are changed by a script or any other module
         # those are reflected immediately in the GUI.
         if self._parameterNode is not None and self.hasObserver(
-            self._parameterNode,
-            vtk.vtkCommand.ModifiedEvent,
-            self.updateGUIFromParameterNode,
+                self._parameterNode,
+                vtk.vtkCommand.ModifiedEvent,
+                self.updateGUIFromParameterNode,
         ):
             self.removeObserver(
                 self._parameterNode,
@@ -297,11 +297,9 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
         self._updatingGUIFromParameterNode = True
 
         self.ui.plusConfigFileSelector.currentPath = self._parameterNode.GetParameter(
-            "PLUSConfigFile"
-        )
+            "PLUSConfigFile")
         self.ui.plusServerExeSelector.currentPath = self._parameterNode.GetParameter(
-            "PLUSExePath"
-        )
+            "PLUSExePath")
 
         # All the GUI updates are done
 
@@ -331,8 +329,7 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
         """
         logging.info(f"onPlusConfigFileChanged({configFilepath})")
         self._parameterNode.SetParameter(
-            "PLUSConfigFile", self.ui.plusConfigFileSelector.currentPath
-        )
+            "PLUSConfigFile", self.ui.plusConfigFileSelector.currentPath)
 
     def onPlusServerExePathChanged(self, plusExePath):
         """
@@ -341,12 +338,10 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
 
         """
         logging.info(f"onPlusServerExePathChanged({plusExePath})")
-        self.logic.settings.setValue(
-            "BLUELungUltrasound/PLUSExePath", self.ui.plusServerExeSelector.currentPath
-        )
+        self.logic.settings.setValue("BLUELungUltrasound/PLUSExePath",
+                                     self.ui.plusServerExeSelector.currentPath)
         self._parameterNode.SetParameter(
-            "PLUSExePath", self.ui.plusServerExeSelector.currentPath
-        )
+            "PLUSExePath", self.ui.plusServerExeSelector.currentPath)
 
     def onStartPlusClicked(self, toggled):
         """
@@ -400,9 +395,8 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
         :param toggled:
 
         """
-        self.ui.setCustomUiButton.text = (
-            "Disable Custom UI" if toggled else "Enable Custom UI"
-        )
+        self.ui.setCustomUiButton.text = ("Disable Custom UI"
+                                          if toggled else "Enable Custom UI")
         self.logic.SetCustomStyle(toggled)
 
     def onGenerateMModeButtonClicked(self):
@@ -440,11 +434,11 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
         lineNode.SetName("MMode_Line")
         lineNode.AddControlPoint(transducerCenter)
 
-        selectionNode = slicer.mrmlScene.GetNodeByID("vtkMRMLSelectionNodeSingleton")
+        selectionNode = slicer.mrmlScene.GetNodeByID(
+            "vtkMRMLSelectionNodeSingleton")
         selectionNode.SetActivePlaceNodeID(lineNode.GetID())
         interactionNode = slicer.mrmlScene.GetNodeByID(
-            "vtkMRMLInteractionNodeSingleton"
-        )
+            "vtkMRMLInteractionNodeSingleton")
         placeModePersistence = 1
         interactionNode.SetPlaceModePersistence(placeModePersistence)
         # mode 1 is Place, can also be accessed via slicer.vtkMRMLInteractionNode().Place
@@ -505,23 +499,22 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
         slicer.mrmlScene.AddNode(self.InferenceOutputNode)
         # self.setupInferenceServer()
 
-        self.model = YOLO(self.resourcePath(f"model/lung_yolov8_pretrained.pt"))
+        self.model = YOLO(
+            self.resourcePath(f"model/lung_yolov8_pretrained.pt"))
 
     def setupOpenIgtLink(self):
         """ """
         self.RawInputIgtlConnectorNode = slicer.vtkMRMLIGTLConnectorNode()
         self.RawInputIgtlConnectorNode.SetName("Raw Input")
-        self.RawInputIgtlConnectorNode.SetTypeClient(
-            "localhost", self.IGTL_RAW_INPUT_PORT
-        )
+        self.RawInputIgtlConnectorNode.SetTypeClient("localhost",
+                                                     self.IGTL_RAW_INPUT_PORT)
         slicer.mrmlScene.AddNode(self.RawInputIgtlConnectorNode)
         self.RawInputIgtlConnectorNode.Start()
 
         self.InferenceIgtlConnectorNode = slicer.vtkMRMLIGTLConnectorNode()
         self.InferenceIgtlConnectorNode.SetName("Inference")
-        self.InferenceIgtlConnectorNode.SetTypeClient(
-            "localhost", self.IGTL_INFERENCE_PORT
-        )
+        self.InferenceIgtlConnectorNode.SetTypeClient("localhost",
+                                                      self.IGTL_INFERENCE_PORT)
         slicer.mrmlScene.AddNode(self.InferenceIgtlConnectorNode)
 
     def setDefaultParameters(self, parameterNode):
@@ -533,8 +526,7 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
 
         if not parameterNode.GetParameter("PLUSConfigFile"):
             parameterNode.SetParameter(
-                "PLUSConfigFile", self.resourcePath(self.CONFIG_FILE_DEFAULT)
-            )
+                "PLUSConfigFile", self.resourcePath(self.CONFIG_FILE_DEFAULT))
 
         if not parameterNode.GetParameter("PLUSExePath"):
             if not self.settings.value("BLUELungUltrasound/PLUSExePath"):
@@ -544,8 +536,8 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
                 )
 
             parameterNode.SetParameter(
-                "PLUSExePath", self.settings.value("BLUELungUltrasound/PLUSExePath")
-            )
+                "PLUSExePath",
+                self.settings.value("BLUELungUltrasound/PLUSExePath"))
 
     def resourcePath(self, filename):
         """Returns the full path to the given resource file.
@@ -575,13 +567,15 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
         """
         if toggled:
             FNULL = open(os.devnull, "w")
-            config_file = self.getParameterNode().GetParameter("PLUSConfigFile")
+            config_file = self.getParameterNode().GetParameter(
+                "PLUSConfigFile")
             print(config_file)
             executable = self.getParameterNode().GetParameter("PLUSExePath")
             args = f'"{executable}" --config-file="{config_file}"'
-            self.plus_server_process = subprocess.Popen(
-                args, stdout=FNULL, stderr=FNULL, shell=False
-            )
+            self.plus_server_process = subprocess.Popen(args,
+                                                        stdout=FNULL,
+                                                        stderr=FNULL,
+                                                        shell=False)
             print("PLUS server started")
         else:
             self.plus_server_process.kill()
@@ -690,14 +684,15 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
         # 3: gather frames coming over OpenIGTLink for n_seconds, stitch them together as 3D np array
 
         ultrasound_volume = np.concatenate(
-            [np.expand_dims(frame[0, :, :], axis=0) for frame in self.FRAMES], axis=0
-        )
+            [np.expand_dims(frame[0, :, :], axis=0) for frame in self.FRAMES],
+            axis=0)
         test_us_im = Image.fromarray(ultrasound_volume[0, :, :])
         test_us_im.save(f"D:/test_us.png")
 
         # 4: generate M-mode image
         mmode_image = self.GenerateMModeImage(ultrasound_volume)
-        print(f"n_frames: {len(self.FRAMES)}, mmode shape: {mmode_image.shape}")
+        print(
+            f"n_frames: {len(self.FRAMES)}, mmode shape: {mmode_image.shape}")
         im = Image.fromarray(mmode_image)
         im.save("D:/test_mmode.png")
         # 5: run PTX inference / send M-mode image over OpenIGTLink for inference running script
@@ -716,30 +711,26 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
         center, r1, r2 = self.GetUltrasoundAreaControlPoints(usVol_flipped[0])
         inputPoint = np.flip(
             slicer.util.arrayFromMarkupsControlPoints(
-                slicer.util.getNode("MMode_Line")
-            )[1][:2]
-        )
+                slicer.util.getNode("MMode_Line"))[1][:2])
         print(center, inputPoint)
 
         # Generate the unit vector of the line
         unitVector = np.subtract(inputPoint, center) / np.linalg.norm(
-            np.subtract(inputPoint, center)
-        )
+            np.subtract(inputPoint, center))
         print(unitVector)
         # The indices of the line intersections with the radius
         P1, P2 = list(abs(unitVector * r1 + center)), list(
-            abs(unitVector * r2 + center)
-        )
+            abs(unitVector * r2 + center))
         print(f"P1: {P1}, P2: {P2}")
-        x, y = np.linspace(P1[0], P2[0], imageHeight).astype(np.uint32), np.linspace(
-            P1[1], P2[1], imageHeight
-        ).astype(
-            np.uint32
-        )  # A list of imageHeight indices between P1 and P2
-        print(f"first point: {x[0]}, {y[0]}; last point: {x[len(x)-1]}, {y[len(y)-1]}")
-        mFull = np.column_stack(
-            [[frame[xVal, yVal] for xVal, yVal in zip(x, y)] for frame in usVol]
-        )  # For each frame, for each [x,y], append the value
+        x, y = np.linspace(P1[0], P2[0], imageHeight).astype(
+            np.uint32), np.linspace(P1[1], P2[1], imageHeight).astype(
+                np.uint32)  # A list of imageHeight indices between P1 and P2
+        print(
+            f"first point: {x[0]}, {y[0]}; last point: {x[len(x)-1]}, {y[len(y)-1]}"
+        )
+        mFull = np.column_stack([
+            [frame[xVal, yVal] for xVal, yVal in zip(x, y)] for frame in usVol
+        ])  # For each frame, for each [x,y], append the value
         cv2.imshow("mmode", mFull)
         return mFull
 
@@ -777,9 +768,9 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
         image = self.preprocess_epiphan_image(image)
         # cv2.imshow("input_img", image)
 
-        prediction = self.model(
-            image, conf=self.CONFIDENCE_THRESHOLD, device=self.DEVICE
-        )[0].plot()
+        prediction = self.model(image,
+                                conf=self.CONFIDENCE_THRESHOLD,
+                                device=self.DEVICE)[0].plot()
         print(prediction.shape)
         # cv2.imshow("pred", prediction)
         # self.PushNumpyDataToVolumeNode(prediction, self.InferenceOutputNode)
@@ -838,7 +829,8 @@ class BLUELungUltrasoundTest(ScriptedLoadableModuleTest):
         self.assertEqual(inputScalarRange[0], 0)
         self.assertEqual(inputScalarRange[1], 695)
 
-        outputVolume = slicer.mrmlScene.AddNewNodeByClass("vtkMRMLScalarVolumeNode")
+        outputVolume = slicer.mrmlScene.AddNewNodeByClass(
+            "vtkMRMLScalarVolumeNode")
         threshold = 100
 
         # Test the module logic
