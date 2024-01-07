@@ -1,21 +1,19 @@
 import logging
 import os
-import subprocess
 import string
-from PIL import Image
-import numpy as np
+import subprocess
 from ctypes import windll
+
 import cv2
-import torch
-from ultralytics import YOLO
-
-import vtk
+import numpy as np
 import qt
-
 import slicer
+import torch
+import vtk
+from PIL import Image
 from slicer.ScriptedLoadableModule import *
 from slicer.util import VTKObservationMixin
-
+from ultralytics import YOLO
 
 #
 # BLUELungUltrasound
