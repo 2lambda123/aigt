@@ -221,8 +221,8 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
     def onSceneStartClose(self, caller, event):
         """Called just before the scene is closed.
 
-        :param caller: 
-        :param event: 
+        :param caller:
+        :param event:
 
         """
         # Parameter node will be reset, do not use it anymore
@@ -231,8 +231,8 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
     def onSceneEndClose(self, caller, event):
         """Called just after the scene is closed.
 
-        :param caller: 
-        :param event: 
+        :param caller:
+        :param event:
 
         """
         # If this module is shown while the scene is closed then recreate a new parameter node immediately
@@ -250,7 +250,7 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
         """Set and observe parameter node.
         Observation is needed because when the parameter node is changed then the GUI must be updated immediately.
 
-        :param inputParameterNode: 
+        :param inputParameterNode:
 
         """
 
@@ -326,7 +326,7 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
     def onPlusConfigFileChanged(self, configFilepath):
         """
 
-        :param configFilepath: 
+        :param configFilepath:
 
         """
         logging.info(f"onPlusConfigFileChanged({configFilepath})")
@@ -337,7 +337,7 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
     def onPlusServerExePathChanged(self, plusExePath):
         """
 
-        :param plusExePath: 
+        :param plusExePath:
 
         """
         logging.info(f"onPlusServerExePathChanged({plusExePath})")
@@ -351,7 +351,7 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
     def onStartPlusClicked(self, toggled):
         """
 
-        :param toggled: 
+        :param toggled:
 
         """
         logging.info(f"onStartPlusClicked({toggled})")
@@ -374,7 +374,7 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
     def onStartInferenceButtonClicked(self, toggled):
         """
 
-        :param toggled: 
+        :param toggled:
 
         """
         input_volume = slicer.util.getNode(self.logic.INPUT_NODE_NAME)
@@ -397,7 +397,7 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
     def onSetCustomUiButtonClicked(self, toggled):
         """
 
-        :param toggled: 
+        :param toggled:
 
         """
         self.ui.setCustomUiButton.text = (
@@ -412,7 +412,7 @@ class BLUELungUltrasoundWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
     def onToggleTestObserverButtonClicked(self, toggled):
         """
 
-        :param toggled: 
+        :param toggled:
 
         """
         input_volume = slicer.util.getNode(self.logic.INPUT_NODE_NAME)
@@ -527,7 +527,7 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
     def setDefaultParameters(self, parameterNode):
         """Initialize parameter node with default settings.
 
-        :param parameterNode: 
+        :param parameterNode:
 
         """
 
@@ -570,7 +570,7 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
     def setPlusServerClicked(self, toggled):
         """
 
-        :param toggled: 
+        :param toggled:
 
         """
         if toggled:
@@ -590,7 +590,7 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
     def setViewToIncomingData(self, nodeName):
         """
 
-        :param nodeName: 
+        :param nodeName:
 
         """
         try:
@@ -607,7 +607,7 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
     def find_local_file(self, filename):
         """
 
-        :param filename: 
+        :param filename:
 
         """
         drives = []
@@ -628,7 +628,7 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
     def ToggleInferenceMode(self, toggled):
         """
 
-        :param toggled: 
+        :param toggled:
 
         """
         if toggled:
@@ -671,8 +671,8 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
     def TestAddFrameToVolume(self, volumeNode, event):
         """
 
-        :param volumeNode: 
-        :param event: 
+        :param volumeNode:
+        :param event:
 
         """
         # frame = np.expand_dims(slicer.util.arrayFromVolume(volumeNode)[0,:,:], axis=0).copy()
@@ -707,7 +707,7 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
     def GenerateMModeImage(self, usVol, imageHeight=256):
         """
 
-        :param usVol: 
+        :param usVol:
         :param imageHeight:  (Default value = 256)
 
         """
@@ -746,7 +746,7 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
     def GetUltrasoundAreaControlPoints(self, ultrasound_frame):
         """
 
-        :param ultrasound_frame: 
+        :param ultrasound_frame:
 
         """
         # center_point = [-95, 461]
@@ -758,7 +758,7 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
     def preprocess_epiphan_image(self, image):
         """
 
-        :param image: 
+        :param image:
 
         """
         image = np.rot90(np.transpose(image, (1, 2, 0)), 2)
@@ -769,8 +769,8 @@ class BLUELungUltrasoundLogic(ScriptedLoadableModuleLogic):
     def PredictStaticSignsOnFrame(self, volumeNode, event):
         """
 
-        :param volumeNode: 
-        :param event: 
+        :param volumeNode:
+        :param event:
 
         """
         image = slicer.util.arrayFromVolume(volumeNode).copy()
